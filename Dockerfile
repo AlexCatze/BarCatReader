@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 WORKDIR /BarCatReader
 
 # Copy everything
-COPY . ./
+COPY ./BarCatReader ./
 # Restore as distinct layers
 RUN dotnet restore
 # Build and publish a release
