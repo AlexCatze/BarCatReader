@@ -72,7 +72,7 @@ namespace BarCatReader.Controllers
             }
             catch(Exception e) {
                 Console.WriteLine(e);
-                return ReturnError("Не вдалося декодувати зображення.");
+                return ReturnError();
             }
         }
 
