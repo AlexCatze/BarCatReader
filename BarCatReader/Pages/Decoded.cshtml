@@ -1,0 +1,28 @@
+﻿@using BarCatReader.Models;
+
+@{
+    var data = ViewBag.Data as BarcodeModel;
+    var error = ViewBag.Data as string;
+
+    ViewData["Title"] = "Результат декодування";
+
+}
+
+@if (data != null)
+{
+    <h2>Декодовано!</h2>
+    <table class="data">
+        <tr><td>Текст</td><td><pre>@data.Value</pre></td></tr>
+        <tr><td>Байти</td><td><pre>@(data.BinaryValue != null ? ("0x" + BitConverter.ToString(data.BinaryValue).Replace("-", " 0x")) : "Не доступно")</pre></td></tr>
+        <tr><td>Тип штрих-коду</td><td>@data.BarcodeType</td></tr>
+    </table>
+} else
+{
+    <h2>Не вдалося декодувати(</h2>
+    @if (error != null)
+    {
+        <p class="error">@error</p>
+    }
+}
+
+<a href="/">На головну</a>

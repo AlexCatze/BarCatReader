@@ -1,18 +1,41 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
+
+td {
+    padding: 10px;
+}
+
+.data {
+    width: 70%;
+    border-collapse: separate;
+}
+
+    .data td {
+        background-color: lightsteelblue;
+        border: 3px;
+        border-color: white;
+    }
+
+    .error {
+        background-color: palevioletred;
+        border: 3px;
+        border-color: white;
+        display:block;
+        padding:20px;
+    }
