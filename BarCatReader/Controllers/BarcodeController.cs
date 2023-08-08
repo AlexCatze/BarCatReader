@@ -1,13 +1,16 @@
 ﻿using BarCatReader.Models;
-using IronBarCode;
 using Microsoft.AspNetCore.Mvc;
+using SkiaSharp;
+using ZXing;
+using ZXing.SkiaSharp;
 
 namespace BarCatReader.Controllers
 {
     public class BarcodeController : Controller
     {
-        HttpClient httpClient;
+        BarcodeReader reader = new BarcodeReader();
 
+        HttpClient httpClient;
         public BarcodeController(HttpClient _httpClient)
         {
             httpClient = _httpClient;
@@ -52,14 +55,18 @@ namespace BarCatReader.Controllers
         {
             try
             {
-                var resultArray = await BarcodeReader.ReadAsync(stream);
-                var res = resultArray.Count() > 0 ? new BarcodeModel(resultArray.First()) : null;
+                var image = SKBitmap.Decode(stream);
+                var res = reader.Decode(new SKBitmapLuminanceSource(image));
+
+                if(res==null) return ReturnError("Не вдалося декодувати зображення.");
+
+                var resModel = new BarcodeModel(res);
 
                 if (Request.Headers.Accept == "application/json")
-                    return Json(res);
+                    return Json(resModel);
                 else
                 {
-                    ViewBag.Data = res;
+                    ViewBag.Data = resModel;
                     return View("../Decoded");
                 }
             }

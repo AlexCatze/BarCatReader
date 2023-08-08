@@ -1,6 +1,5 @@
-﻿using IronBarCode;
-using IronSoftware.Drawing;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
+using ZXing;
 
 namespace BarCatReader.Models
 {
@@ -9,25 +8,26 @@ namespace BarCatReader.Models
         public string? BarcodeType { get; set; }
         public string? Value { get; set; }
         public byte[]? BinaryValue { get; set; }
-        public int? X1 { get; set; }
-        public int? Y1 { get; set; }
-        public int? X2 { get; set; }
-        public int? Y2 { get; set; }
-        public int? Width { get; set; }
-        public int? Height { get; set; }
+        public float X1 { get; set; }
+        public float Y1 { get; set; }
+        public float X2 { get; set; }
+        public float Y2 { get; set; }
+        public float Width { get; set; }
+        public float Height { get; set; }
 
         public BarcodeModel() { }
 
-        public BarcodeModel(BarcodeResult res) {
-            BarcodeType = res.BarcodeType.ToString();
-            Value = res.Value;
-            BinaryValue = res.BinaryValue;
-            X1 = res.X1;
-            Y1 = res.Y1;
-            X2 = res.X2;
-            Y2 = res.Y2;
-            Width = res.Width;
-            Height = res.Height;
+        public BarcodeModel(Result res)
+        {
+            BarcodeType = res.BarcodeFormat.ToString();
+            Value = res.Text;
+            BinaryValue = res.RawBytes;
+            X1 = res.ResultPoints[0].X;
+            Y1 = res.ResultPoints[0].Y;
+            X2 = res.ResultPoints[1].X;
+            Y2 = res.ResultPoints[1].Y;
+            Width = X2 - X1;
+            Height = Y2 - Y1;
         }
     }
 }
