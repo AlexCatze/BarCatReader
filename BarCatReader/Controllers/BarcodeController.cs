@@ -29,7 +29,11 @@ namespace BarCatReader.Controllers
                         return await DecodeFromStream(stream);
                 }
             }
-            catch { }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
 
             return ReturnError("Не вдалося завантажити зображення.");
         }
@@ -59,7 +63,9 @@ namespace BarCatReader.Controllers
                     return View("../Decoded");
                 }
             }
-            catch {}
+            catch(Exception e) {
+                Console.WriteLine(e);
+            }
 
             return ReturnError("Не вдалося декодувати зображення.");
         }
