@@ -1,5 +1,5 @@
 # BarCat Reader
-![preview](/preview.png)
+![preview](/preview.PNG)
 
 WEB-застосунок для демонстрації роботи з HTTP API на прикладі декодування штрих-кодів.
 
