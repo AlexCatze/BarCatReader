@@ -28,14 +28,14 @@ namespace BarCatReader.Controllers
                     using (Stream stream = result.Content.ReadAsStream())
                         return await DecodeFromStream(stream);
                 }
+                else
+                    return ReturnError("Не вдалося завантажити зображення. Отримано помилку від серверу.");
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
+                return ReturnError("Не вдалося завантажити зображення.");
             }
-
-
-            return ReturnError("Не вдалося завантажити зображення.");
         }
 
         [HttpPost("/decode")]
@@ -65,9 +65,8 @@ namespace BarCatReader.Controllers
             }
             catch(Exception e) {
                 Console.WriteLine(e);
+                return ReturnError("Не вдалося декодувати зображення.");
             }
-
-            return ReturnError("Не вдалося декодувати зображення.");
         }
 
         private IActionResult ReturnError(string error = "Йосип драний! Сталась халепа...")
