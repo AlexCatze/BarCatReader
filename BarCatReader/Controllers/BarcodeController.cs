@@ -1,4 +1,5 @@
 ﻿using BarCatReader.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using SkiaSharp;
 using ZXing;
@@ -10,10 +11,12 @@ namespace BarCatReader.Controllers
     {
         BarcodeReader reader = new BarcodeReader();
 
+        IWebHostEnvironment webHostEnvironment;
         HttpClient httpClient;
-        public BarcodeController(HttpClient _httpClient)
+        public BarcodeController(HttpClient _httpClient, IWebHostEnvironment _webHostEnvironment)
         {
             httpClient = _httpClient;
+            webHostEnvironment = _webHostEnvironment;
         }
 
         [HttpGet("/decode")]
@@ -83,6 +86,21 @@ namespace BarCatReader.Controllers
                 return Json(new { Error = error });
             else
                 return View("../Decoded");
+        }
+
+        [HttpGet("/Samples")]
+        public IActionResult Samples()
+        {
+            string rootPath = Path.Combine(webHostEnvironment.WebRootPath, "img/samples/");
+
+            ViewBag.Samples = new Dictionary<string, string>();
+
+            foreach(string file in Directory.EnumerateFiles(rootPath))
+            {
+                ViewBag.Samples.Add(Path.GetFileName(file).Split('.')[0], Path.GetFileName(file));
+            }
+
+            return View("../Samples");
         }
 
     }

@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Зразки штрих-кодів";
+}
+<h2>Зразки штрих-кодів</h2>
+
+<ol>
+    @foreach(KeyValuePair<string,string> kv in ViewBag.Samples)
+    {
+        <li style="text-align: left;"><a href="/img/samples/@kv.Value" download="">@kv.Key</a></li>
+    }
+</ol>
+
+<a href="/">На головну</a>
