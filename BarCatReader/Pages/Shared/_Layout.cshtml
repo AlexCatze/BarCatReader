@@ -7,26 +7,20 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BarCatReader.styles.css" asp-append-version="true" />
+
 </head>
 <body>
     <div class="container">
         <main role="main" class="pb-3">
             <center>
-                <table width="80%">
-                    <tr>
-                        <td>
-                            <center>
-                            <img src="~/img/barcat_logo.png" width="70%" />
-                            <h1>BarCat Reader</h1>
-                            Найкращий засіб для розпізнавання штрих-кодів та штрих-котів!
-                            <br />
-                            <br />
-                            <br />
-                            @RenderBody()
-                </center>
-                        </td>
-                    </tr>
-            </table>
+                <div id="main-container">
+                    <img id="logo" src="~/img/barcat_logo.png" />
+                    <h1>BarCat Reader</h1>
+                    Найкращий засіб для розпізнавання штрих-кодів та штрих-котів!
+                    <div class="data">
+                        @RenderBody()
+                    </div>
+                </div>
             </center>
         </main>
     </div>

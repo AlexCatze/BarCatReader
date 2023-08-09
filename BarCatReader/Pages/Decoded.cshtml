@@ -11,10 +11,10 @@
 @if (data != null)
 {
     <h2>Декодовано!</h2>
-    <table class="data">
-        <tr><td>Текст</td><td><pre>@data.Value</pre></td></tr>
-        <tr><td>Байти</td><td><pre>@(data.BinaryValue != null ? ("0x" + BitConverter.ToString(data.BinaryValue).Replace("-", " 0x")) : "Не доступно")</pre></td></tr>
-        <tr><td>Тип штрих-коду</td><td>@data.BarcodeType</td></tr>
+    <table class="result-table">
+        <tr><td class="first-column">Текст</td><td><pre>@data.Value</pre></td></tr>
+        <tr><td class="first-column">Байти</td><td><pre>@(data.BinaryValue != null ? ("0x" + BitConverter.ToString(data.BinaryValue).Replace("-", " 0x")) : "Не доступно")</pre></td></tr>
+        <tr><td class="first-column">Тип штрих-коду</td><td>@data.BarcodeType</td></tr>
     </table>
 } else
 {

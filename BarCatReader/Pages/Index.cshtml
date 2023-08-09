@@ -3,19 +3,23 @@
     ViewData["Title"] = "Головна";
 }
 
-<table class="data">
+<table class="index-table">
     <form method="get" action="decode">
     <tr>
-        <td><label for="u">Вкажіть посилання на зображення: </label></td>
-        <td><input id="url" name="url" type="text"></td>
-        <td><input type="submit"></td>
+        <td class="first-column"><label for="u">Вкажіть посилання на зображення: </label></td>
+        <td><input id="url" name="url" type="text" style="width: 100%;"></td>
+        <td class="third-column"><input type="submit" value="Декодувати" class="button"></td>
     </tr>
     </form>
     <form enctype="multipart/form-data" method="post" action="decode">
     <tr>
-        <td><label for="f">... або завантажте файл: </label></td>
-        <td><input id="file" name="file" type="file" accept="image/*"></td>
-        <td><input type="submit"></td>
+        <td class="first-column"><label for="f">... або завантажте файл: </label></td>
+        <td style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+            <input type="button" class="button" value="Завантажити" onclick="document.getElementById('file').click();" />
+            <div id="file-text" style="display: inline-block;"></div>
+            <input id="file" name="file" type="file" accept="image/*" style="display: none;" onchange="document.getElementById('file-text').textContent=this.files[0] ? this.files[0].name : ''">
+        </td>
+        <td class="third-column"><input type="submit" value="Декодувати" class="button"></td>
     </tr>
     </form>
 </table>

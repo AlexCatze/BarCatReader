@@ -22,9 +22,15 @@ td {
 }
 
 .data {
-    width: 70%;
-    border-collapse: separate;
+    width: 100%;
+    margin-top: 40px;
+
 }
+    .data table {
+        border-collapse: separate;
+        width: 100%;
+        table-layout: fixed;
+    }
 
     .data td {
         background-color: lightsteelblue;
@@ -32,10 +38,51 @@ td {
         border-color: white;
     }
 
-    .error {
-        background-color: palevioletred;
-        border: 3px;
-        border-color: white;
-        display:block;
-        padding:20px;
+
+.error {
+    background-color: palevioletred;
+    border: 3px;
+    border-color: white;
+    display: block;
+    padding: 20px;
+}
+
+
+.button {
+    display: inline-block;
+    padding: 10px;
+    background-color: lightblue;
+    border-color: steelblue;
+}
+
+.file-input::file-selector-button {
+    display: inline-block;
+    padding: 10px;
+    background-color: lightblue;
+    border-color: steelblue;
+}
+
+#main-container {
+    width: 50%;
+}
+
+@media (max-width: 768px) {
+    #main-container {
+        width: 100%;
     }
+}
+
+#logo {
+    max-width:100%;
+}
+
+.index-table .first-column {
+    width: 30%;
+}
+.index-table .third-column {
+    width: 30%;
+}
+
+.result-table .first-column {
+    width: 30%;
+}
